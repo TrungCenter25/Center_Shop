@@ -3,7 +3,7 @@
     {
         include_once("connection.php");
         $se= $_POST['txtSearch'];
-        $result = mysqli_query($conn,"SELECT * from product where Product_Name like '%{$se}%'");
+        $result = pg_query($conn,"SELECT * from product where Product_Name like '%{$se}%'");
     }
     ?>
     <!-- Bootstrap -->
@@ -22,7 +22,7 @@
 			<tbody>
             <?php
 				$No=1;
-                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+                while($row = pg_fetch_array($result))
                 {
 			?>
 			<tr>

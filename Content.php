@@ -45,8 +45,8 @@
                         <div class="product-carousel">
                            <?php
                               $sql = "SELECT * FROM Product";
-                              $re = mysqli_query($conn, $sql);
-                              while ($row = mysqli_fetch_assoc($re)){
+                              $re = pg_query($conn, $sql);
+                              while ($row = pg_fetch_assoc($re)){
                             ?>
           <div class="col-md-4">
             <div class="card" style="text-align:center;">
