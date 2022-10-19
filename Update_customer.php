@@ -1,7 +1,7 @@
 <?php
 //Get custmer information
-$query = "SELECT CustName, Address, email, telephone FROM customer WHERE Username = '" . $_SESSION["us"]. "'";
-$result = pg_query($conn, $query) or die(mysqli_error($conn));
+$query = "SELECT CustName, Address, email, telephone FROM Customer WHERE Username = '" . $_SESSION["us"]. "'";
+$result = pg_query($conn, $query);
 $row = pg_fetch_array($result);
 
 $us = $_SESSION["us"];
@@ -22,7 +22,7 @@ if(isset($_POST['btnUpdate'])){
 		if($_POST['txtPass1']!=""){
 			$pass = md5($_POST['txtPass1']);
 
-			$sq = "UPDATE customer
+			$sq = "UPDATE Customer
 			SET CustName='$fullname', Address='$address',
 			telephone='$telephone', Password='$pass'
 			WHERE Username = '". $_SESSION['us'] . "'";
@@ -31,10 +31,10 @@ if(isset($_POST['btnUpdate'])){
 		}
 		else 
 		{
-			$sq = "UPDATE customer
+			$sq = "UPDATE Customer
 			SET CustName='$fullname', Address='$address',
 			telephone='$telephone' WHERE Username = '". $_SESSION['us']. "'";
-			pg_query($conn, $sq) or die(mysqli_error($conn));
+			pg_query($conn, $sq);
 		}
 			echo '<meta http-equiv="refresh" content="0;URL=index.php"/>';
 		}else{

@@ -3,7 +3,7 @@
     {
         include_once("connection.php");
         $se= $_POST['txtSearch'];
-        $result = pg_query($conn,"SELECT * from product where Product_Name like '%{$se}%'");
+        $result = pg_query($conn,"SELECT * from Product where Product_Name like '%{$se}%'");
     }
     ?>
     <!-- Bootstrap -->

@@ -31,7 +31,7 @@
     if (isset($_GET["function"]) == "del") {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-            $result = pg_query($conn,"SELECT Pro_image from product where Product_ID='$id'");
+            $result = pg_query($conn,"SELECT Pro_image from Product where Product_ID='$id'");
             $image = pg_fetch_array($result);
             $del = $image["Pro_image"];
             unlink("img/$del");

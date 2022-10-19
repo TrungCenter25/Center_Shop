@@ -51,9 +51,9 @@ if(isset($_POST['btnRegister'])){
         $res = pg_query($conn,$sq);
         if(pg_num_rows($res)==0)
         {
-            pg_query($conn,"INSERT INTO customer (UserName, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
+            pg_query($conn,"INSERT INTO Customer (UserName, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
             VALUE ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email',
-            $date, $month, $year, '', '', 0)") or die(mysqli_error($conn));
+            $date, $month, $year, '', '', 0)");
             echo "You have registered successfully";
         }
         else
