@@ -21,7 +21,7 @@
 	if (isset($_GET["id"])) {
 		$id = $_GET["id"];
 		$sqlstring = "SELECT Product_Name, Price, SmallDesc, DetailDesc, ProDate, Pro_qty, Pro_image, Cat_ID
-						FROM Product WHERE Product_ID = '$id'";
+						FROM product WHERE Product_ID = '$id'";
 		$result = pg_query($conn, $sqlstring);
 		$row = pg_fetch_array($result);
 
