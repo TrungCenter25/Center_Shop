@@ -47,11 +47,11 @@ if(isset($_POST['btnRegister'])){
     else{
         include_once('connection.php');
         $pass = md5($pass1);
-        $sq = "SELECT * from user where username ='$us' or email = '$email'";
+        $sq = "SELECT * from users where userName ='$us' or email = '$email'";
         $res = pg_query($conn,$sq);
         if(pg_num_rows($res)==0)
         {
-            pg_query($conn,"INSERT INTO user (userName, password, custName, gender, address, telephone, email, cusDate, cusMonth, cusYear, state)
+            pg_query($conn,"INSERT INTO users (userName, password, custName, gender, address, telephone, email, cusDate, cusMonth, cusYear, state)
             VALUE ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email',
             $date, $month, $year, 0)");
             echo "You have registered successfully";
