@@ -52,8 +52,8 @@ if(isset($_POST['btnRegister'])){
         if(pg_num_rows($res)==0)
         {
             pg_query($conn,"INSERT INTO users (userName, password, custName, gender, address, telephone, email, cusDate, cusMonth, cusYear, state)
-            VALUE ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email',
-            $date, $month, $year, 0)");
+            VALUES ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email',
+            $date, $month, $year, 0)") or die("can not connect");
             echo "You have registered successfully";
         }
         else
