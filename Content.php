@@ -20,7 +20,7 @@
     <div class="carousel-item">
       <img src="img/2.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Apple Store</h5>
+          <h5>Toy Center Shop</h5>
           <p></p>
         </div>
       </div>

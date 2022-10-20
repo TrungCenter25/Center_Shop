@@ -1,6 +1,6 @@
 <?php
 //Get custmer information
-$query = "SELECT CustName, Address, email, telephone FROM Customer WHERE Username = '" . $_SESSION["us"]. "'";
+$query = "SELECT CustName, Address, email, telephone FROM Customer WHERE Username = '" . $_SESSION["us"]. "'" or die ("Can not connect");
 $result = pg_query($conn, $query);
 $row = pg_fetch_array($result);
 
@@ -33,8 +33,9 @@ if(isset($_POST['btnUpdate'])){
 		{
 			$sq = "UPDATE Customer
 			SET CustName='$fullname', Address='$address',
-			telephone='$telephone' WHERE Username = '". $_SESSION['us']. "'";
+			telephone='$telephone' WHERE Username = '". $_SESSION['us']. "'" or die ("Can not connect");
 			pg_query($conn, $sq);
+			
 		}
 			echo '<meta http-equiv="refresh" content="0;URL=index.php"/>';
 		}else{

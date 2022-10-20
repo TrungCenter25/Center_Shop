@@ -63,7 +63,8 @@
 						copy($pic['tmp_name'], "img/".$pic['name']);
 						$filePic = $pic['name'];
 						$sqlstring = "INSERT INTO Product (ProductID, ProductName, Price, SmallDesc, DetailDesc, ProDate, Pro_qty, Pro_image, Cat_ID)
-										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')";
+										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')"
+										or die("Can not connect");
 						pg_query($conn, $sqlstring);
 						echo '<meta http-equiv="refresh" content = "0; URL=?page=product_management"/>';
 					}

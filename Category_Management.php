@@ -56,7 +56,7 @@ else
                     <?php
                     $No = 1;
                     $result = pg_query($conn, "SELECT * FROM Category");
-                    while ($row = pg_fetch_array($result, MYSQLI_ASSOC)) {
+                    while ($row = pg_fetch_array($result)) {
                     ?>
                         <tr>
                             <td class="cotCheckBox"><?php echo $No; ?></td>

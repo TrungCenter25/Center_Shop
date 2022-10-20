@@ -64,8 +64,8 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT ProductID, ProductName, Price, Pro_qty, Pro_image, Cat_Name FROM product a, category b
-                WHERE a.Cat_ID = b.Cat_ID");
+                $result = pg_query($conn, "SELECT ProductID, ProductName, Price, Pro_qty, Pro_image, Cat_Name FROM Product a, Category b
+                WHERE a.Cat_ID = b.Cat_ID")or die("Can not connect");
 
                 while($row = pg_fetch_array($result))
                 {
