@@ -31,7 +31,7 @@
     if (isset($_GET["function"]) == "del") {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-            $result = pg_query($conn,"SELECT Pro_image from Product where Product_ID='$id'");
+            $result = pg_query($conn,"SELECT Pro_image from product where Product_ID='$id'");
             $image = pg_fetch_array($result);
             $del = $image["Pro_image"];
             unlink("img/$del");
@@ -64,7 +64,7 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT ProductID, ProductName, Price, Pro_qty, Pro_image, Cat_Name FROM Product a, Category b
+                $result = pg_query($conn, "SELECT ProductID, ProductName, Price, Pro_qty, Pro_image, Cat_Name FROM product a, category b
                 WHERE a.Cat_ID = b.Cat_ID")or die("Can not connect");
 
                 while($row = pg_fetch_array($result))

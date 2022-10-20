@@ -47,13 +47,13 @@ if(isset($_POST['btnRegister'])){
     else{
         include_once('connection.php');
         $pass = md5($pass1);
-        $sq = "SELECT * from Customer where Username ='$us' or email = '$email'";
+        $sq = "SELECT * from user where Username ='$us' or email = '$email'";
         $res = pg_query($conn,$sq);
         if(pg_num_rows($res)==0)
         {
-            pg_query($conn,"INSERT INTO Customer (UserName, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
+            pg_query($conn,"INSERT INTO user (UserName, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
             VALUE ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email',
-            $date, $month, $year, '', '', 0)");
+            $date, $month, $year, 0)");
             echo "You have registered successfully";
         }
         else
@@ -174,5 +174,3 @@ if(isset($_POST['btnRegister'])){
                      </div>
 				</form>
 </div>
-    
-

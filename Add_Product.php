@@ -5,7 +5,7 @@
 	include_once("connection.php");
 	function bind_Category_List($conn)
 	{
-		$sqlstring = "SELECT Cat_ID, Cat_Name from Category";
+		$sqlstring = "SELECT Cat_ID, Cat_Name from category";
 		$result = pg_query($conn, $sqlstring);
 		echo "<select name='CategoryList' class='form-control'>
 					<option value='0'>Choose category</option>";
@@ -56,13 +56,13 @@
 			{
 				if($pic["size"] < 614400)
 				{
-					$sq = "SELECT * FROM Product WHERE Product_ID = '$id' or Product_Name = '$proname'";
+					$sq = "SELECT * FROM product WHERE Product_ID = '$id' or Product_Name = '$proname'";
 					$result = pg_query($conn, $sq);
 					if(pg_num_rows($result) == 0)
 					{
 						copy($pic['tmp_name'], "img/".$pic['name']);
 						$filePic = $pic['name'];
-						$sqlstring = "INSERT INTO Product (ProductID, ProductName, Price, SmallDesc, DetailDesc, ProDate, Pro_qty, Pro_image, Cat_ID)
+						$sqlstring = "INSERT INTO product (ProductID, ProductName, Price, SmallDesc, DetailDesc, ProDate, Pro_qty, Pro_image, Cat_ID)
 										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')"
 										or die("Can not connect");
 						pg_query($conn, $sqlstring);
