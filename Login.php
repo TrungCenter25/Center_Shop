@@ -49,7 +49,7 @@
 <section class="Form">
 	<div clas="row">
 		<div class="col-lg-5">
-			<img src="img/2.png" width="1000" class="img-fluid" alt="">
+			<img src="img/one.png" width="1000" class="img-fluid" alt="">
 		</div>
 	</div>
 </section>
