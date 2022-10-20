@@ -3,7 +3,7 @@
     {
         include_once("connection.php");
         $se= $_POST['txtSearch'];
-        $result = pg_query($conn,"SELECT * from product where Product_Name like '%{$se}%'");
+        $result = pg_query($conn,"SELECT * from product where product_name like '%{$se}%'");
     }
     ?>
     <!-- Bootstrap -->
@@ -27,10 +27,10 @@
 			?>
 			<tr>
               <td class="cotcheckbox"><?php echo $No; ?></td>
-              <td><?php echo $row["Product_Name"] ?></td>
-              <td><?php echo $row["Price"] ?></td>
+              <td><?php echo $row["product_name"] ?></td>
+              <td><?php echo $row["price"] ?></td>
               <td align='center' class='columnfunction'>
-                        <img src='img/<?php echo $row["Pro_image"] ?>' border='0' width="50" height="50" />
+                        <img src='img/<?php echo $row["pro_image"] ?>' border='0' width="50" height="50" />
                         </td>
                         <td align='center' class='columnfunction'>
                         <a href="#" class="btn btn-warning" style="color:black">Buy</a>

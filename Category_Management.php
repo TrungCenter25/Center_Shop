@@ -31,7 +31,7 @@ else
         if (isset($_GET["function"]) == "del") {
             if (isset($_GET["id"])) {
                 $id = $_GET["id"];
-                pg_query($conn, "DELETE FROM category WHERE Cat_ID = '$id'");
+                pg_query($conn, "DELETE FROM category WHERE cat_id = '$id'");
             }
         }
         ?>
@@ -60,8 +60,8 @@ else
                     ?>
                         <tr>
                             <td class="cotCheckBox"><?php echo $No; ?></td>
-                            <td><?php echo $row["Cat_Name"]; ?></td>
-                            <td><?php echo $row["Cat_Des"]; ?></td>
+                            <td><?php echo $row["cat_name"]; ?></td>
+                            <td><?php echo $row["cat_des"]; ?></td>
                             <td style='text-align:center'><a href="?page=update_category&&id=<?php echo $row["Cat_ID"]; ?>">
                                     <img src='img/iconpen.png' width="16" height="16" border="0" /></a></td>
                             <td style='text-align:center'>

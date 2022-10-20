@@ -31,11 +31,11 @@
     if (isset($_GET["function"]) == "del") {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-            $result = pg_query($conn,"SELECT Pro_image from product where Product_ID='$id'");
+            $result = pg_query($conn,"SELECT pro_image from product where product_id='$id'");
             $image = pg_fetch_array($result);
-            $del = $image["Pro_image"];
+            $del = $image["pro_image"];
             unlink("img/$del");
-            pg_query($conn, "delete from product where Product_ID='$id'");
+            pg_query($conn, "delete from product where product_id='$id'");
         }
     }    
     ?>
@@ -64,24 +64,24 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT ProductID, ProductName, Price, Pro_qty, Pro_image, Cat_Name FROM product a, category b
-                WHERE a.Cat_ID = b.Cat_ID")or die("Can not connect");
+                $result = pg_query($conn, "SELECT product_id, productname, price, pro_qty, pro_image, cat_name FROM product a, category b
+                WHERE a.cat_ID = b.cat_ID")or die("Can not connect");
 
                 while($row = pg_fetch_array($result))
                 {
 			?>
 			<tr>
               <td class="cotcheckbox"><?php echo $No; ?></td>
-              <td ><?php echo $row["Product_ID"] ?></td>
-              <td><?php echo $row["Product_Name"] ?></td>
-              <td><?php echo $row["Price"] ?></td>
-              <td ><?php echo $row["Pro_qty"] ?></td>
-              <td><?php echo $row["Cat_Name"] ?></td>
+              <td ><?php echo $row["product_id"] ?></td>
+              <td><?php echo $row["product_name"] ?></td>
+              <td><?php echo $row["price"] ?></td>
+              <td ><?php echo $row["pro_qty"] ?></td>
+              <td><?php echo $row["cat_name"] ?></td>
               <td align='center' class='columnfunction'>
-                        <img src='img/<?php echo $row["Pro_image"] ?>' border='0' width="50" height="50" />
+                        <img src='img/<?php echo $row["pro_image"] ?>' border='0' width="50" height="50" />
                         </td>
                         <td align='center' class='columnfunction'>
-                        <a href="?page=update_product&&id=<?php echo $row['Product_ID'] ?>">
+                        <a href="?page=update_product&&id=<?php echo $row['product_ID'] ?>">
                         <img src="img/iconpen.png" width="16" height="16" border='0' />
                         </a>
                         </td>

@@ -31,7 +31,7 @@
 
 			include_once("connection.php");
 			$pass = md5($pa);
-			$res = pg_query("SELECT Username, Password, state FROM user WHERE Username = '$us' AND Password = '$pass'");
+			$res = pg_query("SELECT username, password, state FROM users WHERE username = '$us' AND password = '$pass'");
 			$row = pg_fetch_array($res);
 			if(pg_num_rows($res)==1)
 			{

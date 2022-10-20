@@ -1,13 +1,13 @@
 <?php
 //Get custmer information
-$query = "SELECT CustName, Address, email, telephone FROM user WHERE Username = '" . $_SESSION["us"]. "'" or die ("Can not connect");
+$query = "SELECT custname, address, email, telephone FROM users WHERE Username = '" . $_SESSION["us"]. "'";
 $result = pg_query($conn, $query);
 $row = pg_fetch_array($result);
 
 $us = $_SESSION["us"];
 $email = $row["email"];
-$fullname = $row["CustName"];
-$address = $row["Address"];
+$fullname = $row["custname"];
+$address = $row["address"];
 $telephone = $row["telephone"];
 
 
@@ -22,18 +22,18 @@ if(isset($_POST['btnUpdate'])){
 		if($_POST['txtPass1']!=""){
 			$pass = md5($_POST['txtPass1']);
 
-			$sq = "UPDATE user
-			SET CustName='$fullname', Address='$address',
-			telephone='$telephone', Password='$pass'
-			WHERE Username = '". $_SESSION['us'] . "'";
+			$sq = "UPDATE users
+			SET custName='$fullname', address='$address',
+			telephone='$telephone', password='$pass'
+			WHERE username = '". $_SESSION['us'] . "'";
 
 			pg_query($sq);
 		}
 		else 
 		{
 			$sq = "UPDATE user
-			SET CustName='$fullname', Address='$address',
-			telephone='$telephone' WHERE Username = '". $_SESSION['us']. "'" or die ("Can not connect");
+			SET custName='$fullname', address='$address',
+			telephone='$telephone' WHERE username = '". $_SESSION['us']. "'" or die ("Can not connect");
 			pg_query($conn, $sq);
 			
 		}
