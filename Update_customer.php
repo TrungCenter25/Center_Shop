@@ -31,7 +31,7 @@ if(isset($_POST['btnUpdate'])){
 		}
 		else 
 		{
-			$sq = "UPDATE user
+			$sq = "UPDATE users
 			SET custName='$fullname', address='$address',
 			telephone='$telephone' WHERE username = '". $_SESSION['us']. "'" or die ("Can not connect");
 			pg_query($conn, $sq);

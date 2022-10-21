@@ -31,10 +31,13 @@
     if (isset($_GET["function"]) == "del") {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-            $result = pg_query($conn,"SELECT pro_image from product where product_id='$id'");
-            $image = pg_fetch_array($result);
-            $del = $image["pro_image"];
-            unlink("img/$del");
+            $sq = "SELECT Pro_image from product where Product_ID='$id'";
+            $res = pg_query($conn,$sq);
+            // $result = pg_query($conn,"SELECT pro_image from product where product_id='$id'");
+            // $result = pg_query($conn,)
+            $row = pg_fetch_array($result);
+            $filePic = $row["pro_image"];
+            unlink("img/".$filePic);
             pg_query($conn, "delete from product where product_id='$id'");
         }
     }    
@@ -54,6 +57,7 @@
                     <th><strong>Price</strong></th>
                     <th><strong>Quantity</strong></th>
                     <th><strong>Category ID</strong></th>
+                    <th><strong>Supplier ID</strong></th>
                     <th><strong>Image</strong></th>
                     <th><strong>Edit</strong></th>
                     <th><strong>Delete</strong></th>
@@ -64,8 +68,8 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT product_id, productname, price, pro_qty, pro_image, cat_name FROM product a, category b
-                WHERE a.cat_ID = b.cat_ID")or die("Can not connect");
+                $result = pg_query($conn, "SELECT product_id, product_name, price, pro_qty, pro_image, cat_name FROM product a, category b, supplier c
+                WHERE a.cat_id = b.cat_id and a.sup_id = c.sup_id")or die("Can not connect");
 
                 while($row = pg_fetch_array($result))
                 {
@@ -77,16 +81,17 @@
               <td><?php echo $row["price"] ?></td>
               <td ><?php echo $row["pro_qty"] ?></td>
               <td><?php echo $row["cat_name"] ?></td>
+              <td><?php echo $row["sup_name"] ?></td>             
               <td align='center' class='columnfunction'>
                         <img src='img/<?php echo $row["pro_image"] ?>' border='0' width="50" height="50" />
                         </td>
                         <td align='center' class='columnfunction'>
-                        <a href="?page=update_product&&id=<?php echo $row['product_ID'] ?>">
+                        <a href="?page=update_product&&id=<?php echo $row['product_id'] ?>">
                         <img src="img/iconpen.png" width="16" height="16" border='0' />
                         </a>
                         </td>
                         <td align='center' class='columnfunction'>
-                        <a href="?page=product_management&&function=del&&id=<?php echo $row["Product_ID"] ?>" onclick="return deleteConfirm()">
+                        <a href="?page=product_management&&function=del&&id=<?php echo $row["product_id"] ?>" onclick="return deleteConfirm()">
                         <img src="img/iconx.png" width="16" height="16" border='0' />
                         </a>
                         </td>

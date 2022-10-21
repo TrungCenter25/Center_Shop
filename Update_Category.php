@@ -54,7 +54,7 @@
 				$des = $_POST["txtDes"];
 				$err = "";
 				if ($name == "") {
-					$err . "<li>Enter Category Namem, please</li>";
+					$err . "<li>Enter Category Name, please</li>";
 				}
 				if ($err != "") {
 					echo "<ul>$err</ul>";
@@ -63,7 +63,7 @@
 					$result = pg_query($conn, $sq);
 					if (pg_num_rows($result) == 0) 
 					{
-						pg_query($conn, "UPDATE category SET cat_name = '$name', Cat_des = '$des' WHERE cat_id = '$id'");
+						pg_query($conn, "UPDATE category SET cat_name = '$name', cat_des = '$des' WHERE cat_id = '$id'");
 						echo '<meta http-equiv="refresh" content = "0; URL=?page=category_management"/>';
 					} else 
 					{

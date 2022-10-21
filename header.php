@@ -55,7 +55,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="?page=category_management">Category</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="?page=supplier_management">Supplier</a>
+          </li>
         </ul>
         <form class="d-flex" action="?page=search" method="POST">
           <input class="form-control me-2" type="search" placeholder="Search" name="txtSearch" aria-label="Search">

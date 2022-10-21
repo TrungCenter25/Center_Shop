@@ -106,6 +106,10 @@
         {
             include_once("Search.php");
         }
+        elseif($page=="supplier_management");
+        {
+            include_once("Supplier_Management.php");
+        }
     } 
     else 
     {

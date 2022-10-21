@@ -5,7 +5,7 @@
 	include_once("connection.php");
 	function bind_Category_List($conn)
 	{
-		$sqlstring = "SELECT cat_ID, cat_Name from category";
+		$sqlstring = "SELECT cat_id, cat_name from category";
 		$result = pg_query($conn, $sqlstring);
 		echo "<select name='CategoryList' class='form-control'>
 					<option value='0'>Choose category</option>";
@@ -63,8 +63,7 @@
 						copy($pic['tmp_name'], "img/".$pic['name']);
 						$filePic = $pic['name'];
 						$sqlstring = "INSERT INTO product (product_id, product_name, price, smalldesc, detaildesc, prodate, pro_qty, pro_image, cat_id)
-										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')"
-										or die("Can not connect");
+										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')";
 						pg_query($conn, $sqlstring);
 						echo '<meta http-equiv="refresh" content = "0; URL=?page=product_management"/>';
 					}
