@@ -14,6 +14,17 @@
 		}
 		echo "</select>";
 	}
+	function bind_Supplier_List($conn)
+	{
+		$sqlstrings = "SELECT sup_id, sup_name from supplier";
+		$result = pg_query($conn, $sqlstrings);
+		echo "<select name='SupplierList' class='form-control'>
+					<option value='0'>Choose supplier</option>";
+		while ($row = pg_fetch_array($result)) {
+			echo "<option value='" . $row['sup_id'] . "'>" . $row['sup_name'] . "</option>";
+		}
+		echo "</select>";
+	}
 	if(isset($_POST["btnAdd"]))
 	{
 		$id = $_POST["txtID"];
@@ -24,6 +35,7 @@
 		$qty = $_POST["txtQty"];
 		$pic = $_FILES["txtImage"];
 		$category = $_POST["CategoryList"];
+		$supplier = $_POST["SupplierList"];
 		$err = "";
 
 		if(trim($id) == "")
@@ -37,6 +49,10 @@
 		if($category == "0")
 		{
 			$err.="<li>Choose product category, please</li>";
+		}
+		if($supplier == "0")
+		{
+			$err.="<li>Choose product supplier, please</li>";
 		}
 		if(!is_numeric($price))
 		{
@@ -108,7 +124,14 @@
 					?>
     			</div>
     		</div>
-
+			<div class="form-group">
+    			<label for="" class="col-sm-2 control-label">Product suppler(*): </label>
+    			<div class="col-sm-10">
+    				<?php
+					bind_Supplier_List($conn);
+					?>
+    			</div>
+    		</div>
     		<div class="form-group">
     			<label for="lblGia" class="col-sm-2 control-label">Price(*): </label>
     			<div class="col-sm-10">

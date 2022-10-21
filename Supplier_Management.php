@@ -60,11 +60,10 @@ else
                         <tr>
                             <td class="cotCheckBox"><?php echo $No; ?></td>
                             <td><?php echo $row["sup_name"]; ?></td>
-                            <td><?php echo $row["sup_des"]; ?></td>
-                            <td style='text-align:center'><a href="?page=update_supplier&&id=<?php echo $row["cat_id"]; ?>">
+                            <td style='text-align:center'><a href="?page=update_supplier&&id=<?php echo $row["sup_id"]; ?>">
                                     <img src='img/iconpen.png' width="16" height="16" border="0" /></a></td>
                             <td style='text-align:center'>
-                                <a href="?page=supplier_management&&function=del&&id=<?php echo $row["cat_ID"]; ?>" onclick="return deleteConfirm()">
+                                <a href="?page=supplier_management&&function=del&&id=<?php echo $row["sup_id"]; ?>" onclick="return deleteConfirm()">
                                     <img src='img/iconx.png' width="16" height="16" border="0" /></a>
                             </td>
                         </tr>

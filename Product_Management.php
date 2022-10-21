@@ -31,13 +31,12 @@
     if (isset($_GET["function"]) == "del") {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-            $sq = "SELECT Pro_image from product where Product_ID='$id'";
-            $res = pg_query($conn,$sq);
+            $res = pg_query($conn, "SELECT pro_image from product where product_id ='$id'");
             // $result = pg_query($conn,"SELECT pro_image from product where product_id='$id'");
             // $result = pg_query($conn,)
-            $row = pg_fetch_array($result);
+            $row = pg_fetch_array($res);
             $filePic = $row["pro_image"];
-            unlink("img/".$filePic);
+            unlink("img/$filePic");
             pg_query($conn, "delete from product where product_id='$id'");
         }
     }    
@@ -56,8 +55,8 @@
                     <th><strong>Product Name</strong></th>
                     <th><strong>Price</strong></th>
                     <th><strong>Quantity</strong></th>
-                    <th><strong>Category ID</strong></th>
-                    <th><strong>Supplier ID</strong></th>
+                    <th><strong>Category Name</strong></th>
+                    <th><strong>Supplier Name</strong></th>
                     <th><strong>Image</strong></th>
                     <th><strong>Edit</strong></th>
                     <th><strong>Delete</strong></th>
@@ -68,8 +67,8 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT product_id, product_name, price, pro_qty, pro_image, cat_name FROM product a, category b, supplier c
-                WHERE a.cat_id = b.cat_id and a.sup_id = c.sup_id")or die("Can not connect");
+                $result = pg_query($conn, "SELECT product_id, product_name, price, pro_qty, pro_image, cat_name, sup_name FROM product a, category b, supplier c
+                WHERE a.cat_id = b.cat_id ")or die("Can not connect");
 
                 while($row = pg_fetch_array($result))
                 {

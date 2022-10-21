@@ -18,9 +18,24 @@
 		}
 		echo "</select>";
 	}
+	function bind_Supplier_List($conn, $selectValue)
+	{
+		$sqlstring = "SELECT sup_id, sup_name from supplier";
+		$result = pg_query($conn, $sqlstring);
+		echo "<select name='SupplierList' class='form-control'>
+					<option value='0'>Choose supplier</option>";
+		while ($row = pg_fetch_array($result)) {
+			if ($row['sup_ID'] == $selectValue) {
+				echo "<option value='" . $row['sup_id'] . "' selected>" . $row['sup_name'] . "</option>";
+			} else {
+				echo "<option value='" . $row['sup_id'] . "'>" . $row['sup_name'] . "</option>";
+			}
+		}
+		echo "</select>";
+	}
 	if (isset($_GET["id"])) {
 		$id = $_GET["id"];
-		$sqlstring = "SELECT product_name, price, smalldesc, detaildesc, prodate, pro_qty, pro_image, cat_id
+		$sqlstring = "SELECT product_name, price, smalldesc, detaildesc, prodate, pro_qty, pro_image, cat_id, sup_id
 						FROM product WHERE product_id = '$id'";
 		$result = pg_query($conn, $sqlstring);
 		$row = pg_fetch_array($result);
@@ -32,6 +47,7 @@
 		$qty = $row["pro_qty"];
 		$pic = $row["pro_image"];
 		$category = $row["cat_id"];
+		$supplier = $row["sup_id"];
 	?>
     	<div class="container">
     		<h2>Updating Product</h2>
@@ -57,7 +73,14 @@
 						?>
     				</div>
     			</div>
-
+				<div class="form-group">
+    				<label for="" class="col-sm-2 control-label">Product supplier(*): </label>
+    				<div class="col-sm-10">
+    					<?php
+						bind_Supplier_List($conn, $category);
+						?>
+    				</div>
+    			</div>
     			<div class="form-group">
     				<label for="lblGia" class="col-sm-2 control-label">Price(*): </label>
     				<div class="col-sm-10">
