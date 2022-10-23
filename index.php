@@ -118,6 +118,18 @@
         {
             include_once("Update_Supplier.php");
         }
+        elseif($page=="shop_management")
+        {
+            include_once("Shop_Management.php");
+        }
+        elseif($page=="add_shop")
+        {
+            include_once("Add_Shop.php");
+        }
+        elseif($page=="update_shop")
+        {
+            include_once("Update_Shop.php");
+        }
     } 
     else 
     {

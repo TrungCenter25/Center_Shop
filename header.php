@@ -58,7 +58,11 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="?page=supplier_management">Supplier</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="?page=shop_management">Shop</a>
+          </li>
         </ul>
+        
         <form class="d-flex" action="?page=search" method="POST">
           <input class="form-control me-2" type="search" placeholder="Search" name="txtSearch" aria-label="Search">
           <button class="btn btn-outline-success" name="btnsearch" type="submit">Search</button>

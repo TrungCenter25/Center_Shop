@@ -25,6 +25,17 @@
 		}
 		echo "</select>";
 	}
+	function bind_Shop_List($conn)
+	{
+		$sqlstrings = "SELECT shop_id, shop_name, shop_address from shop";
+		$result = pg_query($conn, $sqlstrings);
+		echo "<select name='ShopList' class='form-control'>
+					<option value='0'>Choose shop</option>";
+		while ($row = pg_fetch_array($result)) {
+			echo "<option value='" . $row['shop_id'] . "'>" . $row['shop_name'] . "</option>";
+		}
+		echo "</select>";
+	}
 	if(isset($_POST["btnAdd"]))
 	{
 		$id = $_POST["txtID"];
@@ -36,6 +47,7 @@
 		$pic = $_FILES["txtImage"];
 		$category = $_POST["CategoryList"];
 		$supplier = $_POST["SupplierList"];
+		$shop = $_POST["ShopList"];
 		$err = "";
 
 		if(trim($id) == "")
@@ -53,6 +65,10 @@
 		if($supplier == "0")
 		{
 			$err.="<li>Choose product supplier, please</li>";
+		}
+		if($shop == "0")
+		{
+			$err.="<li>Choose shop, please</li>";
 		}
 		if(!is_numeric($price))
 		{
@@ -78,8 +94,8 @@
 					{
 						copy($pic['tmp_name'], "img/".$pic['name']);
 						$filePic = $pic['name'];
-						$sqlstring = "INSERT INTO product (product_id, product_name, price, smalldesc, detaildesc, prodate, pro_qty, pro_image, cat_id)
-										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category')";
+						$sqlstring = "INSERT INTO product (product_id, product_name, price, smalldesc, detaildesc, prodate, pro_qty, pro_image, cat_id, sup_id, shop_id)
+										VALUES ('$id', '$proname', '$price', '$short', '$detail', '".date('Y-m-d H:i:s')."', $qty, '$filePic', '$category', '$supplier', '$shop')";
 						pg_query($conn, $sqlstring);
 						echo '<meta http-equiv="refresh" content = "0; URL=?page=product_management"/>';
 					}
@@ -129,6 +145,14 @@
     			<div class="col-sm-10">
     				<?php
 					bind_Supplier_List($conn);
+					?>
+    			</div>
+    		</div>
+			<div class="form-group">
+    			<label for="" class="col-sm-2 control-label">Shop(*): </label>
+    			<div class="col-sm-10">
+    				<?php
+					bind_Shop_List($conn);
 					?>
     			</div>
     		</div>
