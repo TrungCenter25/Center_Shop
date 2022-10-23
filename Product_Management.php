@@ -55,9 +55,9 @@
                     <th><strong>Product Name</strong></th>
                     <th><strong>Price</strong></th>
                     <th><strong>Quantity</strong></th>
-                    <th><strong>Category Name</strong></th>
-                    <th><strong>Supplier Name</strong></th>
-                    <th><strong>Shop Name</strong></th>
+                    <th><strong>Category ID</strong></th>
+                    <th><strong>Supplier ID</strong></th>
+                    <th><strong>Shop ID</strong></th>
                     <th><strong>Image</strong></th>
                     <th><strong>Edit</strong></th>
                     <th><strong>Delete</strong></th>
@@ -68,10 +68,9 @@
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = pg_query($conn, "SELECT product_id, product_name, price, pro_qty, pro_image, cat_name, sup_name, shop_name FROM product a, category b, supplier c, shop d
-                WHERE a.cat_id = b.cat_id ")or die("Can not connect");
-
-// and a.sup_id = c.sup_id and a.shop_id = d.shop_id
+                // $result = pg_query($conn, "SELECT product_id, product_name, price, pro_qty, pro_image, cat_name, sup_name, shop_name FROM product a, category b, supplier c, shop d
+                // WHERE a.cat_id = b.cat_id ")or die("Can not connect");
+                $result = pg_query($conn, "select * from product");
                 while($row = pg_fetch_array($result))
                 {
 			?>
@@ -81,9 +80,9 @@
               <td><?php echo $row["product_name"] ?></td>
               <td><?php echo $row["price"] ?></td>
               <td ><?php echo $row["pro_qty"] ?></td>
-              <td><?php echo $row["cat_name"] ?></td>
-              <td><?php echo $row["sup_name"] ?></td> 
-              <td><?php echo $row["shop_name"] ?></td>       
+              <td><?php echo $row["cat_id"] ?></td>
+              <td><?php echo $row["sup_id"] ?></td> 
+              <td><?php echo $row["shop_id"] ?></td>       
               <td align='center' class='columnfunction'>
                         <img src='img/<?php echo $row["pro_image"] ?>' border='0' width="50" height="50" />
                         </td>

@@ -131,7 +131,10 @@
             include_once("Update_Shop.php");
         }
     } 
+    else 
+    {
         include_once("content.php");
+    }
     
     include_once("footer.php");
     ?>
