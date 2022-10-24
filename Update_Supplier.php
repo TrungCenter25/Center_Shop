@@ -58,7 +58,7 @@
 						echo '<meta http-equiv="refresh" content = "1; URL=?page=supplier_management"/>';
 					} else 
 					{
-						echo "<li>Dulicate category Name</li>";
+						echo "<li>Dulicate supplier Name</li>";
 					}
 				}
 			}

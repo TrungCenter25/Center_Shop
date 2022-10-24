@@ -93,7 +93,7 @@
     				<label for="" class="col-sm-2 control-label">Product supplier(*): </label>
     				<div class="col-sm-10">
     					<?php
-						bind_Supplier_List($conn, $category);
+						bind_Supplier_List($conn, $supplier);
 						?>
     				</div>
     			</div>
@@ -101,7 +101,7 @@
     				<label for="" class="col-sm-2 control-label">Shop(*): </label>
     				<div class="col-sm-10">
     					<?php
-						bind_Shop_List($conn, $category);
+						bind_Shop_List($conn, $shop);
 						?>
     				</div>
     			</div>
@@ -201,6 +201,12 @@
 		if ($category == "0") {
 			$err .= "<li>Choose product category, please</li>";
 		}
+		if ($supplier == "0") {
+			$err .= "<li>Choose product supplier, please</li>";
+		}
+		if ($shop == "0") {
+			$err .= "<li>Choose shop, please</li>";
+		}
 		if (!is_numeric($price)) {
 			$err .= "<li>Product price must be number</li>";
 		}
@@ -210,7 +216,7 @@
 			if ($pic['name'] != "") {
 				if ($pic["type"] == "image/jpg" || $pic["type"] == "image/jpeg" || $pic["type"] == "image/png" || $pic["type"] == "image/gif") {
 					if ($pic["size"] < 614400) {
-						$sq = "SELECT * FROM product WHERE product_id = '$id' or product_name = '$proname'";
+						$sq = "SELECT * FROM product WHERE product_id != '$id' and product_name = '$proname'";
 						$result = pg_query($conn, $sq);
 						if (pg_num_rows($result) == 0) {
 							copy($pic['tmp_name'], "img/" . $pic['name']);
