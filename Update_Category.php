@@ -64,7 +64,7 @@
 					if (pg_num_rows($result) == 0) 
 					{
 						pg_query($conn, "UPDATE category SET cat_name = '$name', cat_des = '$des' WHERE cat_id = '$id'");
-						echo '<meta http-equiv="refresh" content = "0; URL=?page=category_management"/>';
+						echo '<meta http-equiv="refresh" content = "1000; URL=?page=category_management"/>';
 					} else 
 					{
 						echo "<li>Dulicate category Name</li>";
@@ -77,3 +77,5 @@
 			echo '<meta http-equiv="refresh" content = "0; URL=?page=category_management"/>';
 		}
 		?>
+
+

@@ -33,7 +33,7 @@
 				}
 			}
 		}
-		?>
+		?> 
 
      <div class="container">
      	<h2>Adding Category</h2>
@@ -67,3 +67,6 @@
      		</div>
      	</form>
      </div>
+
+
+	 
